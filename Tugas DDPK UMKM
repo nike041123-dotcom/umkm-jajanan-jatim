@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portal UMKM Jawa Timur - Melestarikan Kuliner dan Produk Lokal Asli">
+    <title>UMKM Jawa Timur | Cita Rasa Nusantara</title>
+    
+    <!-- Font Google: Playfair Display (Elegan/Tradisional) & Poppins (Modern) -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* =========================================
+           TEMA JAWA TIMURAN (Terakota, Cokelat, Emas)
+           ========================================= */
+        :root {
+            --primary: #8B4513;      /* Cokelat Kayu Jati */
+            --accent: #D2691E;       /* Terakota / Bata */
+            --gold: #D4AF37;         /* Emas Tradisional */
+            --bg-light: #FFF8E7;     /* Krem / Kain Mori */
+            --bg-white: #FFFFFF;
+            --text-dark: #2C1810;    /* Cokelat Sangat Gelap */
+            --text-light: #F5F5DC;
+            --shadow: 0 10px 30px rgba(139, 69, 19, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            background-color: var(--bg-white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(rgba(44, 24, 16, 0.7), rgba(139, 69, 19, 0.8)), 
+                        url('https://images.unsplash.com/photo-1555126634-323283e090fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            border-bottom: 5px solid var(--gold);
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: var(--text-light);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent);
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--gold);
+            border-color: var(--gold);
+        }
+
+        /* --- SECTIONS UMUM --- */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--gold);
+            margin: 10px auto 0;
+        }
+
+        /* --- TENTANG KAMI --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p { margin-bottom: 1rem; }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border: 3px solid var(--gold);
+        }
+
+        /* --- GALERI KULINER --- */
+        #kuliner { background-color: white; }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .food-card {
+            background: var(--bg-light);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e0d0b8;
+        }
+
+        .food-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(139, 69, 19, 0.25);
+        }
+
+        .food-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .food-info { padding: 1.5rem; text-align: center; }
+        .food-info h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+        .food-info p { font-size: 0.9rem; color: #666; margin-bottom: 1rem; }
+        
+        .badge {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        /* --- DIREKTORI UMKM --- */
+        .directory-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .directory-table th, .directory-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .directory-table th {
+            background-color: var(--primary);
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+        }
+
+        .directory-table tr:hover { background-color: var(--bg-light); }
+        .status-active { color: green; font-weight: 600; }
+
+        /* --- KONTAK --- */
+        #kontak { background-color: white; }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info i {
+            color: var(--accent);
+            width: 30px;
+            margin-right: 10px;
+        }
+
+        .contact-info p { margin-bottom: 1rem; display: flex; align-items: center; }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            transition: border 0.3s;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .contact-form button {
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .contact-form button:hover { background-color: var(--accent); }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--text-light);
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .footer-section h4 { color: var(--gold); margin-bottom: 1rem; }
+        .footer-section a { color: #ccc; text-decoration: none; display: block; margin-bottom: 0.5rem; transition: color 0.3s; }
+        .footer-section a:hover { color: var(--accent); }
+
+        .social-links a {
+            display: inline-block;
+            margin-right: 15px;
+            font-size: 1.2rem;
+            color: var(--gold);
+        }
+
+        .copyright {
+            border-top: 1px solid #444;
+            padding-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .about-grid, .contact-wrapper { grid-template-columns: 1fr; }
+            .nav-links { display: none; } /* Sederhana untuk mobile, bisa dikembangkan dengan JS hamburger menu */
+            .directory-table { display: block; overflow-x: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="container nav-container">
+            <a href="#" class="logo"><i class="fas fa-store"></i> UMKM Jatim</a>
+            <ul class="nav-links">
+                <li><a href="#beranda">Beranda</a></li>
+                <li><a href="#tentang">Tentang</a></li>
+                <li><a href="#kuliner">Kuliner</a></li>
+                <li><a href="#direktori">Direktori</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header id="beranda" class="hero">
+        <div class="container hero-content">
+            <h1>Cita Rasa Asli Jawa Timur</h1>
+            <p>Mendukung ribuan Usaha Mikro, Kecil, dan Menengah (UMKM) dalam melestarikan warisan kuliner dan kerajinan khas Timur Pulau Jawa.</p>
+            <a href="#kuliner" class="btn">Jelajahi Kuliner <i class="fas fa-utensils"></i></a>
+        </div>
+    </header>
+
+    <!-- TENTANG KAMI -->
+    <section id="tentang">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tentang Kami</h2>
+                <p>Menghubungkan pelaku usaha lokal dengan pecinta kuliner Nusantara</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <h3>Melestarikan Warisan, Memberdayakan Lokal</h3>
+                    <p>Jawa Timur memiliki kekayaan kuliner yang tidak tertandingi, dari pedasnya Rawon Surabaya hingga gurihnya Soto Madura. Portal ini dibuat sebagai wadah promosi digital gratis bagi pelaku UMKM agar dapat menjangkau pasar yang lebih luas.</p>
+                    <p>Kami percaya bahwa di balik setiap mangkuk bakso dan piring lontong, terdapat cerita perjuangan, resep warisan nenek moyang, dan ekonomi kreatif yang menggerakkan daerah.</p>
+                    <a href="#direktori" class="btn">Lihat Daftar UMKM</a>
+                </div>
+                <div class="about-image">
+                    <!-- Gambar pasar tradisional / suasana Jatim -->
+                    <img src="suasana pasar tradisional.jpeg" alt="Suasan Pasar Tradisional Jawa Timur">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERI KULINER -->
+    <section id="kuliner">
+        <div class="container">
+            <div class="section-title">
+                <h2>Kuliner Ikonik</h2>
+                <p>Hidangan asli yang menjadi kebanggaan masyarakat Jawa Timur</p>
+            </div>
+            <div class="gallery-grid">
+                <!-- Rawon -->
+                <div class="food-card">
+                    <img src="rawon daging sapi.avif" alt="Rawon Surabaya" onerror="this.src='https://via.placeholder.com/400x300?text=Rawon+Surabaya'">
+                    <div class="food-info">
+                        <span class="badge">Surabaya</span>
+                        <h3>Rawon Daging Sapi</h3>
+                        <p>Sup daging dengan kuah hitam pekat khas dari bumbu kluwek, disajikan dengan tauge segar dan telur asin.</p>
+                        <button class="btn" onclick="pesan('Rawon Surabaya')" style="padding: 8px 20px; font-size: 0.9rem;">Pesan</button>
+                    </div>
+                </div>
+
+                <!-- Soto Madura -->
+                <div class="food-card">
+                    <img src="soto ayam madura.jpg" alt="Soto Madura" onerror="this.src='https://via.placeholder.com/400x300?text=Soto+Madura'">
+                    <div class="food-info">
+                        <span class="badge">Madura</span>
+                        <h3>Soto Ayam Madura</h3>
+                        <p>Kuah kuning kental beraroma rempah kuat, berisi suwiran ayam, kentang, dan koya gurih.</p>
+                        <button class="btn" onclick="pesan('Soto Madura')" style="padding: 8px 20px; font-size: 0.9rem;">Pesan</button>
+                    </div>
+                </div>
+
+                <!-- Bakso Malang -->
+                <div class="food-card">
+                    <img src="bakso komplit malang.webp" alt="Bakso Malang" onerror="this.src='https://via.placeholder.com/400x300?text=Bakso+Malang'">
+                    <div class="food-info">
+                        <span class="badge">Malang</span>
+                        <h3>Bakso Komplit Malang</h3>
+                        <p>Paket lengkap berisi bakso urat, bakso kecil, tahu, siomay, dan mie kuning dengan kuah kaldu sapi.</p>
+                        <button class="btn" onclick="pesan('Bakso Malang')" style="padding: 8px 20px; font-size: 0.9rem;">Pesan</button>
+                    </div>
+                </div>
+
+                <!-- Lontong Balap -->
+                <div class="food-card">
+                    <img src="lontong balap.avif" alt="Lontong Balap" onerror="this.src='https://via.placeholder.com/400x300?text=Lontong+Balap'">
+                    <div class="food-info">
+                        <span class="badge">Surabaya</span>
+                        <h3>Lontong Balap</h3>
+                        <p>Kombinasi unik lontong, tauge, tahu goreng, lentho, dan siraman kuah petis yang manis-gurih.</p>
+                        <button class="btn" onclick="pesan('Lontong Balap')" style="padding: 8px 20px; font-size: 0.9rem;">Pesan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIREKTORI UMKM -->
+    <section id="direktori">
+        <div class="container">
+            <div class="section-title">
+                <h2>Direktori UMKM Mitra</h2>
+                <p>Beberapa pelaku usaha lokal yang telah bergabung dengan platform kami</p>
+            </div>
+            <table class="directory-table">
+                <thead>
+                    <tr>
+                        <th>Nama UMKM</th>
+                        <th>Kota/Kabupaten</th>
+                        <th>Produk Unggulan</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Rawon Mak Nyus</strong></td>
+                        <td>Surabaya</td>
+                        <td>Rawon Daging & Rujak Cingur</td>
+                        <td class="status-active"><i class="fas fa-check-circle"></i> Aktif</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bakso President</strong></td>
+                        <td>Malang</td>
+                        <td>Bakso Urat & Cwie Mie</td>
+                        <td class="status-active"><i class="fas fa-check-circle"></i> Aktif</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Soto Ambengan</strong></td>
+                        <td>Surabaya</td>
+                        <td>Soto Ayam & Nasi Gila</td>
+                        <td class="status-active"><i class="fas fa-check-circle"></i> Aktif</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Keripik Tempe Sania</strong></td>
+                        <td>Sananwetan, Blitar</td>
+                        <td>Keripik Tempe & Stik Pisang</td>
+                        <td class="status-active"><i class="fas fa-check-circle"></i> Aktif</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- KONTAK -->
+    <section id="kontak">
+        <div class="container">
+            <div class="section-title">
+                <h2>Hubungi Kami</h2>
+                <p>Ingin mendaftarkan UMKM Anda atau memiliki pertanyaan?</p>
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3>Informasi Kontak</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. Raya Darmo No. 123, Surabaya, Jawa Timur</p>
+                    <p><i class="fas fa-phone"></i> +62 812-3456-7890 (WhatsApp)</p>
+                    <p><i class="fas fa-envelope"></i> halo@umkm-jatim.id</p>
+                    <p><i class="fas fa-clock"></i> Senin - Jumat: 08.00 - 17.00 WIB</p>
+                    
+                    <div style="margin-top: 2rem;">
+                        <h4>Ikuti Kami</h4>
+                        <div class="social-links" style="margin-top: 1rem;">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" onsubmit="kirimPesan(event)">
+                    <input type="text" id="nama" placeholder="Nama Lengkap Anda" required>
+                    <input type="email" id="email" placeholder="Alamat Email" required>
+                    <input type="text" id="subjek" placeholder="Subjek Pesan" required>
+                    <textarea id="pesan" rows="5" placeholder="Tulis pesan Anda di sini..." required></textarea>
+                    <button type="submit"><i class="fas fa-paper-plane"></i> Kirim Pesan</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>UMKM Jawa Timur</h4>
+                    <p>Platform digital pendukung ekonomi kreatif dan pelestarian kuliner khas Jawa Timur sejak 2024.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Tautan Cepat</h4>
+                    <a href="#beranda">Beranda</a>
+                    <a href="#kuliner">Kuliner</a>
+                    <a href="#direktori">Direktori</a>
+                    <a href="#kontak">Kontak</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Bantuan</h4>
+                    <a href="#">Syarat & Ketentuan</a>
+                    <a href="#">Kebijakan Privasi</a>
+                    <a href="#">FAQ</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Proyek UMKM Jawa Timur. Dibuat dengan ❤️ menggunakan HTML, CSS & JS.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Fungsi untuk tombol pesan di kartu makanan
+        function pesan(namaMakanan) {
+            alert(`Terima kasih! Permintaan pemesanan untuk "${namaMakanan}" telah diterima.\n\nAnda akan diarahkan ke WhatsApp mitra UMKM kami.`);
+            // Simulasi redirect ke WA (opsional)
+            // window.open(`https://wa.me/6281234567890?text=Halo, saya ingin pesan ${namaMakanan}`, '_blank');
+        }
+
+        // Fungsi untuk formulir kontak
+        function kirimPesan(event) {
+            event.preventDefault(); // Mencegah reload halaman
+            
+            const nama = document.getElementById('nama').value;
+            const subjek = document.getElementById('subjek').value;
+            
+            if(nama && subjek) {
+                alert(`Halo ${nama}!\n\nPesan Anda dengan subjek "${subjek}" telah berhasil kami terima. Tim kami akan menghubungi Anda melalui email dalam 1x24 jam.`);
+                // Reset form setelah kirim
+                event.target.reset();
+            }
+        }
+
+        // Efek smooth scroll untuk navbar (fallback untuk browser lama)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        console.log("✅ Website UMKM Jawa Timur Versi Lengkap Berhasil Dimuat!");
+    </script>
+</body>
+</html>
